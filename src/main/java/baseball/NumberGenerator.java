@@ -4,33 +4,40 @@ import nextstep.utils.Randoms;
 
 public final class NumberGenerator {
 
-    static int generate() {
-        int computerNum;
+    static String generate() {
+        String computerValue;
 
         while (true) {
-            computerNum = Randoms.pickNumberInRange(123, 987);
-            System.out.println("generate : " + computerNum);
-            if (isValid(computerNum)) {
+            computerValue = Integer.toString(Randoms.pickNumberInRange(123, 987));
+            if (isValid(computerValue)) {
+                System.out.println("final: " + computerValue);
                 break;
             }
         }
 
-        return computerNum;
+        return computerValue;
     }
 
-    static boolean isValid(int num) {
+    static boolean isValid(String value) {
 
-        if (num < 123 || num > 987) {
+        if (value.length() != 3) {
             return false;
         }
 
-        int first = num / 100;
-        int second = num / 10 % 10;
-        int third = num % 10;
+        char[] valueArray = value.toCharArray();
 
-        if (first == second || first == third || second == third) {
-            return false;
+        for (char c : valueArray) {
+            if (c == '0') return false;
         }
+
+        final int len = 3;
+
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (valueArray[i] == valueArray[j]) return false;
+            }
+        }
+
         return true;
     }
 }
