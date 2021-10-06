@@ -1,10 +1,10 @@
-package baseball;
+package baseball.model;
 
 import nextstep.utils.Console;
 
 public class User {
 
-    public static String getNewUserValue(){
+    public static String getNewUserValue() {
         return Console.readLine();
     }
 

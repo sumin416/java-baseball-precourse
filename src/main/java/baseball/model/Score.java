@@ -1,6 +1,10 @@
-package baseball;
+package baseball.model;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Score {
+    private static final int LEN = 3;
     private int strike;
     private int ball;
 
@@ -22,17 +26,26 @@ public class Score {
 
     private void calStrike(String computeValue, String userValue) {
         for (int i = 0; i < 3; i++) {
-            if (computeValue.charAt(i) == userValue.charAt(i)) ++strike;
+            strike += isSameDigit(computeValue.charAt(i), userValue.charAt(i));
         }
     }
 
-    private void calBall(String computeValue, String userValue) {
-        final int LEN = computeValue.length();
-        for (int i = 0; i < LEN; i++) {
-            for (int j = 0; j < LEN; j++) {
-                if (i != j && computeValue.charAt(i) == userValue.charAt(j)) ++ball;
-            }
+    private int isSameDigit(char ch1, char ch2) {
+        if (ch1 == ch2) {
+            return 1;
         }
+        return 0;
+    }
+
+    private void calBall(String computeValue, String userValue) {
+        Set<Character> digits = new HashSet<>();
+
+        for (int i = 0; i < LEN; i++) {
+            digits.add(computeValue.charAt(i));
+            digits.add(userValue.charAt(i));
+        }
+
+        ball = 2 * LEN - digits.size() - strike;
     }
 
     public int getStrike() {
