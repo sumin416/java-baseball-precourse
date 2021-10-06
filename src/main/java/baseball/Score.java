@@ -13,7 +13,7 @@ public class Score {
         ball = 0;
     }
 
-    void calScore(String computeValue, String userValue) {
+    public void calScore(String computeValue, String userValue) {
         initScore();
 
         calStrike(computeValue, userValue);

@@ -4,13 +4,12 @@ import nextstep.utils.Randoms;
 
 public final class NumberGenerator {
 
-    static String generate() {
+    public static String generate() {
         String computerValue;
 
         while (true) {
             computerValue = Integer.toString(Randoms.pickNumberInRange(123, 987));
             if (isValid(computerValue)) {
-                System.out.println("final: " + computerValue);
                 break;
             }
         }
@@ -18,7 +17,11 @@ public final class NumberGenerator {
         return computerValue;
     }
 
-    static boolean isValid(String value) {
+    public static boolean isNotValid(String value){
+        return !isValid(value);
+    }
+
+    public static boolean isValid(String value) {
 
         if (value.length() != 3) {
             return false;
