@@ -9,12 +9,6 @@ public class Score {
         ball = 0;
     }
 
-    public Score(int strike, int ball) {
-        this.strike = strike;
-        this.ball = ball;
-    }
-
-
     void calScore(String computeValue, String userValue) {
 
         calStrike(computeValue, userValue);
